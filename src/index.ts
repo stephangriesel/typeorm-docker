@@ -5,7 +5,7 @@ import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 
 function handleError(err, req, res, next){
-    res.status(err.statusCode || 500).send(err.message)
+    res.status(err.statusCode || 500).send({message: err.message})
 }
 
 AppDataSource.initialize().then(async () => {
