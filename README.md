@@ -1,12 +1,8 @@
-# How to set up
-
-1. Create project `typeorm init --database postgres --express` 
-2. Create `docker-compose.yml` in root
-
-# Awesome Project Build with TypeORM
+# TypeORM Project with Docker
 
 Steps to run this project:
 
 1. Run `npm i` command
 2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+3. `docker compose up` to start the container
+4. Run `npm start` command to start project
