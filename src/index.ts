@@ -2,19 +2,20 @@ import * as express from "express"
 import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
+import * as morgan from "morgan"
 import { Routes } from "./routes"
+
+import { port } from './config'
 
 function handleError(err, req, res, next){
     res.status(err.statusCode || 500).send({message: err.message})
 }
 
 AppDataSource.initialize().then(async () => {
-
-    // create express app
     const app = express()
+    app.use(morgan('combined'))
     app.use(bodyParser.json())
 
-    // register express routes from defined application routes
     Routes.forEach(route => {
         (app as any)[route.method](route.route, async(req: Request, res: Response, next: Function) => {
             try {
@@ -27,8 +28,8 @@ AppDataSource.initialize().then(async () => {
     })
 
     app.use(handleError)
-    app.listen(3000)
+    app.listen(port)
 
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results")
+    console.log(`Express server has started on port ${port}. Open http://localhost:3000/users to see results`)
 
 }).catch(error => console.log(error))
