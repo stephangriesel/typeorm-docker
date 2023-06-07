@@ -5,6 +5,8 @@
    "type": "commonjs",
    "devDependencies": {
       "@types/node": "^16.11.10",
+      "dotenv": "^16.1.4",
+      "morgan": "^1.10.0",
       "nodemon": "^2.0.22",
       "ts-node": "10.7.0",
       "typescript": "4.5.2"
@@ -19,6 +21,6 @@
    "scripts": {
       "start": "ts-node src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
-      "dev": "nodemon -w *.ts src/index.ts"
+      "dev": "nodemon -w *.ts -w .env src/index.ts"
    }
 }
