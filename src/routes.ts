@@ -25,7 +25,19 @@ export const Routes = [{
         body('lastName').isString(),
         body('age').isInt({ min: 0}).withMessage('not sure if this person can type if not older than 0 years old')
     ]
-}, {
+}, 
+{
+    method: "put",
+    route: "/users/:id",
+    controller: UserController,
+    action: "update",
+    validation: [
+        body('firstName').isString(),
+        body('lastName').isString(),
+        body('age').isInt({ min: 0}).withMessage('not sure if this person can type if not older than 0 years old')
+    ]
+},
+{
     method: "delete",
     route: "/users/:id",
     controller: UserController,
