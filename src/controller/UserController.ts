@@ -36,6 +36,32 @@ export class UserController {
         return this.userRepository.save(user)
     }
 
+    async update(request: Request, response: Response, next: NextFunction) {
+        const id = parseInt(request.params.id)
+        const { firstName, lastName, age } = request.body;
+      
+        try {
+            const user = await this.userRepository.findOne({
+                where: { id }
+            })
+      
+          if (!user) {
+            return response.status(404).json({ message: 'User not found' });
+          }
+      
+          user.firstName = firstName;
+          user.lastName = lastName;
+          user.age = age;
+      
+          await this.userRepository.save(user);
+      
+          return response.status(200).json({ message: 'User updated successfully' });
+        } catch (error) {
+          return response.status(500).json({ message: 'Internal server error' });
+        }
+      }
+      
+
     async remove(request: Request, response: Response, next: NextFunction) {
         const id = parseInt(request.params.id)
 
