@@ -4,5 +4,5 @@ import app from './app'
 
 AppDataSource.initialize().then(async () => {
     app.listen(port)
-    console.log(`Express server has started on port ${port}. Open http://localhost:3000/users to see results`)
+    console.log(`Express server has started on port ${port}. Open http://localhost:3050/users to see results`)
 }).catch(error => console.log(error))
