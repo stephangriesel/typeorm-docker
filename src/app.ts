@@ -1,4 +1,5 @@
 import * as express from "express"
+import * as cors from "cors"
 import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import * as morgan from "morgan"
@@ -10,6 +11,7 @@ function handleError(err, req, res, next) {
 }
 
 const app = express()
+app.use(cors());
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 
